@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { GitHubRepo } from "./types/gitHubRepo";
-import { gitHubTopReposFetcher } from "./clients/gitHubTopReposFetcher";
+import { gitHubFetcher } from "./clients/gitHubFetcher";
 import { Repo } from "./components/Repo";
 
 export default function Home() {
@@ -38,7 +38,7 @@ function useFetchRepos(): {
     setError("");
 
     try {
-      const gitHubRepos = await gitHubTopReposFetcher.getTopRepos();
+      const gitHubRepos = await gitHubFetcher.getTopRepos();
       setGitHubRepos(gitHubRepos);
     } catch {
       setError("Error fetching data");

@@ -1,9 +1,9 @@
-import React from "react";
+"use client";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-
 import { GitHubRepo } from "../types/gitHubRepo";
-
 import { StarIcon, TrophyIcon } from "@heroicons/react/20/solid";
+import { RepoDetailsModal } from "./RepoDetailsModal";
 
 export function Repo({
   repo,
@@ -14,8 +14,15 @@ export function Repo({
   rank: number;
   totalItems: number;
 }) {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+
   return (
     <div className="w-70 h-70 bg-slate-300 rounded overflow-hidden shadow-lg hover:shadow-2xl">
+      {showModal && <RepoDetailsModal repo={repo} onClose={handleModalClose} />}
       <div className="px-6 flex items-center justify-between pt-4 pb-2 ">
         <div className="flex items-center">
           <span className="ml-1">
@@ -39,7 +46,14 @@ export function Repo({
           {repo.description}
         </p>
       </div>
-
+      <div className="px-6 flex justify-center pt-4 pb-2">
+        <span
+          onClick={() => setShowModal(true)}
+          className="text-center capitalize cursor-pointer text-gray-900 hover:text-gray-400"
+        >
+          get latest commits
+        </span>
+      </div>
       <div className="px-6 flex items-center justify-between pt-4 pb-2">
         <a href={repo.owner.html_url} target="_blank">
           <div className="flex items-center cursor-pointer text-gray-900 hover:text-gray-400">
