@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Top 100 Github Browser",
+  title: "Top 100 Github Repos Browser",
   description: "Browse Top 100 Github Repos",
 };
 

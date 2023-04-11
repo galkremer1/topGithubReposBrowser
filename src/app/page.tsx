@@ -6,12 +6,18 @@ import { Repo } from "./components/Repo";
 
 export default function Home() {
   const { gitHubRepos, loading, error, fetchData } = useFetchRepos();
-  debugger;
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {gitHubRepos.length > 0 &&
-          gitHubRepos.map((repo) => <Repo key={repo.id} repo={repo} />)}
+          gitHubRepos.map((repo, i) => (
+            <Repo
+              key={repo.id}
+              repo={repo}
+              rank={i + 1}
+              totalItems={gitHubRepos.length}
+            />
+          ))}
       </div>
     </main>
   );
