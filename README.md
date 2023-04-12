@@ -20,8 +20,12 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Jest Unit Tests
+
+```bash
+npm test
+```
+
 ## Known issues
 
 Sort and order options have been [deprecated](https://github.blog/changelog/2023-03-10-changes-to-the-code-search-api)
-
-# topGithubReposBrowser
