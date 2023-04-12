@@ -1,9 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import Image from "next/image";
 import { GitHubRepo } from "../types/gitHubRepo";
 import { StarIcon, TrophyIcon } from "@heroicons/react/20/solid";
-import { RepoDetailsModal } from "./RepoDetailsModal";
+import { RepoDetailsModal } from "./repoDetailsModal/RepoDetailsModal";
 
 export function Repo({
   repo,
@@ -16,9 +16,9 @@ export function Repo({
 }) {
   const [showModal, setShowModal] = useState(false);
 
-  const handleModalClose = () => {
+  const handleModalClose = useCallback(() => {
     setShowModal(false);
-  };
+  }, []);
 
   return (
     <div className="w-70 h-70 bg-slate-300 rounded overflow-hidden shadow-lg hover:shadow-2xl">

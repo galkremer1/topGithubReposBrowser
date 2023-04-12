@@ -14,14 +14,14 @@ class GitHubFetcher {
   ): Promise<GitHubRepo[]> {
     const url = reposUrlBuilder(BASE_URL, resPerPage);
     const res = await axios.get<GitHubRepoResponse>(url);
-    const topRepos = res.data.items;
+    const topRepos = res?.data?.items;
     return topRepos;
   }
   async getLatestCommits(
     owner: string,
     repoName: string,
     sinceTimeStamp: string,
-    untilTimeStamp?: string,
+    page: number,
     resPerPage: number = NUM_OF_COMMITS_TO_FETCH
   ): Promise<GitHubCommit[]> {
     const url = commitsUrlBuilder(
@@ -30,10 +30,10 @@ class GitHubFetcher {
       repoName,
       sinceTimeStamp,
       resPerPage,
-      untilTimeStamp
+      page
     );
     const res = await axios.get<GitHubCommit[]>(url);
-    const latestCommits = res.data;
+    const latestCommits = res?.data;
     return latestCommits;
   }
 }

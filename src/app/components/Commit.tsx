@@ -1,16 +1,20 @@
+import Image from "next/image";
 import { GitHubCommit } from "../types/gitHubCommit";
-import { EnvelopeIcon } from "@heroicons/react/20/solid";
 
 export function Commit({ commit }: { commit: GitHubCommit }) {
   return (
     <div className="flex flex-row items-center border-b-2 cursor-pointer border-gray-300 py-4 bg-gray-50 hover:bg-gray-200">
       <div className="w-1/3 p-4">
         <div className="flex space-between font-medium text-gray-700">
-          <a
-            title={commit.commit.author.email}
-            href={`mailto:${commit.commit.author.email}`}
-          >
-            <EnvelopeIcon className="h-5 w-5 text-gray-300 mr-1" />
+          <a href={commit.author.html_url} target="_blank">
+            <Image
+              className="w-5 h-5 rounded-full mr-4"
+              data-testid="avatar"
+              src={commit.author.avatar_url}
+              alt={commit.author.login}
+              width={20}
+              height={20}
+            />
           </a>
           <p title={commit.commit.author.name} className="truncate">
             {commit.commit.author.name}

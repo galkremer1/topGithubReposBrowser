@@ -20,11 +20,9 @@ export const commitsUrlBuilder = (
   repo: string,
   sinceTimeStamp: string,
   resPerPage: number,
-  untilTimeStamp?: string
+  page: number
 ) => {
-  return `${baseUrl}/repos/${owner}/${repo}/commits?since=${sinceTimeStamp}${
-    untilTimeStamp ? `&until=${untilTimeStamp}` : ""
-  }&per_page=${resPerPage}`;
+  return `${baseUrl}/repos/${owner}/${repo}/commits?since=${sinceTimeStamp}&page=${page}&per_page=${resPerPage}`;
 };
 
 export const getTimestamp24HoursAgo = (): string => {
